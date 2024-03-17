@@ -1,0 +1,22 @@
+---
+# tasks file for lliurex
+
+- name: Generate greeting and store result
+  demo_hello: 
+    name: "{{ friend_name }}" 
+  register: demo_greeting 
+
+- name: dump output
+  debug: 
+    msg: "{{ demo_greeting }}\n"
+
+- name: Update apt
+  apt:
+    upgrade: "no"
+    update_cache: yes
+
+- name: Install "joe" package
+  apt:
+    name: joe
+    state: latest
+
