@@ -47,10 +47,16 @@
     item: "joe"
   include_tasks: install_pkgs.yml
 
-- name: Install meta package from fact value
-  vars:
-    item: "lliurex-meta-{{llxflavour}}"
+# - name: Install meta package from fact value
+#   vars:
+#     item: "lliurex-meta-{{llxflavour}}"
+#   include_tasks: install_pkgs.yml
+
+- name: Install yakuake only for desktops
+  vars: 
+    item: "yakuake"
   include_tasks: install_pkgs.yml
+  when: (llxflavour is defined) and (llxflavour == "desktop")
 
 - name: Install list of packages
   include_tasks: install_pkgs.yml
