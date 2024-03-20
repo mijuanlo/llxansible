@@ -2,4 +2,6 @@
 # vars file for lliurex
 pkglist:
   - nmap
-  - cowsay
+  - zip
+  - pigz
+
