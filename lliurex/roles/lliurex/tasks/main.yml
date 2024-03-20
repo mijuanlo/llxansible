@@ -1,6 +1,23 @@
 ---
 # tasks file for lliurex
 
+- block:
+  - name: Gather lliurex version
+    command: lliurex-version -n
+    register: llx_version
+
+  - name: Gather lliurex flavour
+    command: lliurex-version -f
+    register: llx_flavour
+
+  - name: Setup facts for version
+    ansible.builtin.set_fact:
+      llxversion: "{{ llx_version.stdout }}"
+
+  - name: Setup facts for flavour
+    ansible.builtin.set_fact:
+      llxflavour: "{{ llx_flavour.stdout }}"
+
 - name: Generate greeting and store result
   demo_hello: 
     name: "{{ friend_name }}" 
@@ -28,6 +45,11 @@
 - name: Install "joe" (2) package
   vars:
     item: "joe"
+  include_tasks: install_pkgs.yml
+
+- name: Install meta package from fact value
+  vars:
+    item: "lliurex-meta-{{llxflavour}}"
   include_tasks: install_pkgs.yml
 
 - name: Install list of packages
