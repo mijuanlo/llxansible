@@ -1,7 +1,7 @@
 ---
 # vars file for lliurex
-pkglist:
-  - nmap
-  - zip
-  - pigz
+# pkglist:
+#   - nmap
+#   - zip
+#   - pigz
 
