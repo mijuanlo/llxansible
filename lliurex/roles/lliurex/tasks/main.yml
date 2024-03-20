@@ -21,7 +21,12 @@
     state: latest
     update_cache: true
 
+- name: Install "joe" (2) package
+  vars:
+    item: "joe"
+  include_tasks: install_pkgs.yml
+
 - name: Install list of packages
-  apt:
-    pkg: "{{ pkglist }}"
+  include_tasks: install_pkgs.yml
+  loop: "{{ pkglist }}"
 
