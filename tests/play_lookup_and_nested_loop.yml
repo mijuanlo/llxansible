@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: Fileglob (find FILES ONLY) test
+    command: "echo encontrado item"
+    with_fileglob:
+    - "/tmp/*"
+
+  - name: Test lookup fileglob filter all .txt files in dir /tmp
+    debug: msg={{ lookup('ansible.builtin.fileglob', '/tmp/*.txt') }}
+
+  - name: Find homes into var test 
+    find:
+      paths: "/home"
+      file_type: directory
+    register: homes
+
+  - name: Apply filters to var test
+    debug: msg="{{ item | basename }}"
+    with_items:
+      "{{ homes.files | map(attribute='path') | list }}"
+
+  - name: Nested loops test
+    vars:
+      keys:
+        - key1
+        - key2
+    debug: msg="/home/{{ item[0] }} {{ item[1] }} {{ item[2] }}"
+    with_nested:
+      - [ 'calvin', 'josh', 'alice' ]
+      - '{{ keys }}'
+      - [ 'a','b','c']

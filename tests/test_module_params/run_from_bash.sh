@@ -1,0 +1,1 @@
+ANSIBLE_LIBRARY=. ansible -m testmodule -a "name=['test'] one=['uno','uni'] two={'dos':2}" localhost
