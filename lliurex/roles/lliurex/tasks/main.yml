@@ -62,3 +62,7 @@
   include_tasks: install_pkgs.yml
   loop: "{{ pkglist }}"
 
+- name: Copy desktop to user home
+  copy_desktop:
+    name: zero-center.desktop
+    user: lliurex
