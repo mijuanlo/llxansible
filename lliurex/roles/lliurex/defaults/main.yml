@@ -3,5 +3,5 @@
 friend_name: "Valentin"
 pkglist:
   - terminator
-  - tar-doc
+  - debian-policy
 
