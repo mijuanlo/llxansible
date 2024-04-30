@@ -36,15 +36,15 @@
     upgrade: "no"
     update_cache: yes
 
-- name: Install "joe" package
+- name: Install "nmap" package
   apt:
-    name: joe
+    name: nmap
     state: latest
     update_cache: true
 
-- name: Install "joe" (2) package
+- name: Install "iptraf" (2) package via install_pkgs
   vars:
-    item: "joe"
+    item: "iptraf-ng"
   include_tasks: install_pkgs.yml
 
 # - name: Install meta package from fact value
