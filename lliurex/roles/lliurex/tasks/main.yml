@@ -72,11 +72,11 @@
     dest: "/etc/llxversion23"
     content: |
       "23"
-  when: (llxversion is defined) and (llxversion is regex(\'^23.*\')
+  when: (llxversion is defined) and (llxversion | regex_search("^23.*"))
 
 - name: Write release into a file
   copy:
     dest: "/etc/llxversion21"
     content: |
       "21"
-  when: (llxversion is defined) and (llxversion is regex(\'^21.*\')
+  when: (llxversion is defined) and (llxversion | regex_search("^21.*"))
