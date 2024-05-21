@@ -1,0 +1,12 @@
+---
+# tasks file for primaria
+
+- name: Install list of packages
+  include_tasks: install_pkgs.yml
+  loop: "{{ pkglist_primaria }}"
+
+- name: Write release into a file
+  copy:
+    dest: "/etc/llx_primaria"
+    content: |
+      primaria

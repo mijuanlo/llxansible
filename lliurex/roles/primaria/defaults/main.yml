@@ -1,0 +1,6 @@
+---
+# defaults file for primaria
+pkglist_primaria:
+  - lzma
+  - attr
+
