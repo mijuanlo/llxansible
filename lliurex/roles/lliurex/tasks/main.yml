@@ -36,15 +36,15 @@
     upgrade: "no"
     update_cache: yes
 
-- name: Install "nmap" package
+- name: Install "nmap" package using apt module
   apt:
     name: nmap
     state: latest
     update_cache: true
 
-- name: Install "iptraf" (2) package via install_pkgs
+- name: Install "mc" (2) package via linked install_pkgs
   vars:
-    item: "iptraf-ng"
+    item: "mc"
   include_tasks: install_pkgs.yml
 
 # - name: Install meta package from fact value
@@ -58,7 +58,7 @@
   include_tasks: install_pkgs.yml
   when: (llxflavour is defined) and (llxflavour == "desktop")
 
-- name: Install list of packages
+- name: Install list of packages from variable (defaults (terminator & debian-policy) or customized)
   include_tasks: install_pkgs.yml
   loop: "{{ pkglist }}"
 
