@@ -18,65 +18,65 @@
     ansible.builtin.set_fact:
       llxflavour: "{{ llx_flavour.stdout }}"
 
-- name: Generate greeting and store result
-  demo_hello: 
-    name: "{{ friend_name }}" 
-  register: demo_greeting 
+#- name: Generate greeting and store result
+#  demo_hello: 
+#    name: "{{ friend_name }}" 
+#  register: demo_greeting 
 
-- name: dump output
-  debug: 
-    msg: "{{ demo_greeting }}\n"
+#- name: dump output
+#  debug: 
+#    msg: "{{ demo_greeting }}\n"
 
-- name: "Ansible | List all known variables and facts"
-  debug:
-    var: hostvars[inventory_hostname]
+#- name: "Ansible | List all known variables and facts"
+#  debug:
+#    var: hostvars[inventory_hostname]
 
 - name: Update apt
   apt:
     upgrade: "no"
     update_cache: yes
 
-- name: Install "nmap" package using apt module
-  apt:
-    name: nmap
-    state: latest
-    update_cache: true
+#- name: Install "nmap" package using apt module
+#  apt:
+#    name: nmap
+#    state: latest
+#    update_cache: true
 
-- name: Install "mc" (2) package via linked install_pkgs
-  vars:
-    item: "mc"
-  include_tasks: install_pkgs.yml
+#- name: Install "mc" (2) package via linked install_pkgs
+#  vars:
+#    item: "mc"
+#  include_tasks: install_pkgs.yml
 
 # - name: Install meta package from fact value
 #   vars:
 #     item: "lliurex-meta-{{llxflavour}}"
 #   include_tasks: install_pkgs.yml
 
-- name: Install yakuake only for desktops
-  vars: 
-    item: "yakuake"
-  include_tasks: install_pkgs.yml
-  when: (llxflavour is defined) and (llxflavour == "desktop")
+#- name: Install yakuake only for desktops
+#  vars: 
+#    item: "yakuake"
+#  include_tasks: install_pkgs.yml
+#  when: (llxflavour is defined) and (llxflavour == "desktop")
 
-- name: Install list of packages from variable (defaults (terminator & debian-policy) or customized)
-  include_tasks: install_pkgs.yml
-  loop: "{{ pkglist }}"
+#- name: Install list of packages from variable (defaults (terminator & debian-policy) or customized)
+#  include_tasks: install_pkgs.yml
+#  loop: "{{ pkglist }}"
 
 #- name: Copy desktop to user home
 #  copy_desktop:
 #    name: zero-center.desktop
 #    user: lliurex
 
-- name: Write release into a file
-  copy:
-    dest: "/etc/llxversion23"
-    content: |
-      23
-  when: (llxversion is defined) and (llxversion | regex_search("^23.*"))
+#- name: Write release into a file
+#  copy:
+#    dest: "/etc/llxversion23"
+#    content: |
+#      23
+#  when: (llxversion is defined) and (llxversion | regex_search("^23.*"))
 
-- name: Write release into a file
-  copy:
-    dest: "/etc/llxversion21"
-    content: |
-      21
-  when: (llxversion is defined) and (llxversion | regex_search("^21.*"))
+#- name: Write release into a file
+#  copy:
+#    dest: "/etc/llxversion21"
+#    content: |
+#      21
+#  when: (llxversion is defined) and (llxversion | regex_search("^21.*"))
