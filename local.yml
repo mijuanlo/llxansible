@@ -3,7 +3,7 @@
   gather_facts: false
   tasks:
     - name: Gather last commit
-      command: cat collections/ansible_collections/llx/.git/refs/heads/master
+      command: git rev-parse HEAD
       register: gits
       delegate_to: localhost
       connection: local
