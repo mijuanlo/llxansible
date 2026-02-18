@@ -9,6 +9,10 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
+import sys
+
+sys.dont_write_bytecode = True
+
 DOCUMENTATION = '''
     name: acipu
     type: notification
