@@ -210,6 +210,24 @@ class CallbackModule(CallbackBase):
         self.items = defaultdict(list)
         self.facts = defaultdict(dict)
         self.start_time = get_time()
+        self._cleanup_pyc()
+
+    def _cleanup_pyc(self):
+        """Limpiar archivos .pyc del directorio del callback"""
+        callback_dir = os.path.dirname(__file__)
+        for pyc_file in glob.glob(os.path.join(callback_dir, '*.pyc')):
+            try:
+                os.remove(pyc_file)
+            except:
+                pass
+        # Limpiar __pycache__
+        pycache_dir = os.path.join(callback_dir, '__pycache__')
+        if os.path.exists(pycache_dir):
+            import shutil
+            try:
+                shutil.rmtree(pycache_dir)
+            except:
+                pass
 
     def set_options(self, task_keys=None, var_options=None, direct=None):
 
@@ -425,6 +443,11 @@ class CallbackModule(CallbackBase):
     def v2_playbook_on_stats(self, stats):
         self.send_facts()
         self.send_reports(stats)
+        self._cleanup_pyc()
 
     def v2_runner_on_ok(self, result):
         self.append_result(result)
+
+    def v2_playbook_on_start(self,playbook):
+        self._cleanup_pyc()
+
