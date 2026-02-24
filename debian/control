@@ -1,5 +1,5 @@
 Source: llxlransible
-Section: network
+Section: net
 Priority: optional
 Maintainer: M.Angel Juan <m.angel.juan@gmail.com>
 Build-Depends: debhelper-compat (= 13)
@@ -9,7 +9,7 @@ Rules-Requires-Root: no
 
 Package: llxlransible
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ansible, systemd, bash
+Depends: ${shlibs:Depends}, ${misc:Depends}, ansible, systemd, bash (>=5.1)
 Description: Llx Local Runner Ansible
  Local runner for ansible
 
